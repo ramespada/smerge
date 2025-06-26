@@ -5643,6 +5643,25 @@ c     ice history
         ipstart=ipstart+11
         goto 100
       endif
+cnew unused variables (ramiro)---
+c
+c     SKY-CONDITION-OBSERVATION
+      if(addtype.eq.'GE') then
+        ipstart=ipstart+1+6*3
+        goto 100
+      endif
+c     PRESENT-WEATHER-OBSERVATION
+      if(addtype.eq.'AT') then
+        ipstart=ipstart+9
+        goto 100
+      endif
+c     SUPPLEMENTARY-WIND-OBSERVATION
+      if(addtype.eq.'OD') then
+        ipstart=ipstart+11
+        goto 100
+      endif
+
+c--------------------------------
 c
 c     useful variables
 c
@@ -5842,15 +5861,18 @@ c     sea surface temperature
       if(addtype.eq.'SA') then
 c --- v5.7.0 (121203)
         read(recin(ipstart:ipstart+4),fmt='(f4.1,a1)') tw,atwqc
+        print*,"here?"
         if(tempk.gt.9998..or.tw.gt.999.8.or.ishqc(atwqc).eq.9) then
           dtow=9999.
         else
           dtow=tempk-273.15-tw
         endif
         ipstart=ipstart+5
+        print*,"here1?"
         goto 100
       endif
-c
+
+c                                                                  c
 c     otherwise, there has been an error
         open(unit=600,file='isherror.txt')
         write(*,*) ' Error decoding ISH code'
@@ -5906,7 +5928,8 @@ c --- ISHQC   called by:  READISH
 c --- ISHQC   calls:      none 
 c----------------------------------------------------------------------
 c --- v5.7.0 (121203)
-      character*1 aqc
+      !character*1 aqc
+      character(len=*):: aqc
       logical lunknown
 c --- Reject unknown character codes
       lunknown=.TRUE.
@@ -6209,7 +6232,7 @@ c --- (DATETM provides RCPU = 0.0 on the PC)
 
 c --- Report current date
       rdate12=rdate2(1:10)//'  '
-      call FMT_DATE(io6,'MM-DD-YYYY','DD-MMM-YYYY',rdate12)
+      call FMT_DATE(io6,'MM-DD-YYYY  ','DD-MMM-YYYY  ',rdate12)
       write(io6,1402)rtime2,rdate12,NINT(delt),NINT(rcpu)
 1402  format(//2x,'End of run -- Clock time: ',a8/
      1         2x,'                    Date: ',a12//
