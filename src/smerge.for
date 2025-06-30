@@ -5861,14 +5861,12 @@ c     sea surface temperature
       if(addtype.eq.'SA') then
 c --- v5.7.0 (121203)
         read(recin(ipstart:ipstart+4),fmt='(f4.1,a1)') tw,atwqc
-        print*,"here?"
         if(tempk.gt.9998..or.tw.gt.999.8.or.ishqc(atwqc).eq.9) then
           dtow=9999.
         else
           dtow=tempk-273.15-tw
         endif
         ipstart=ipstart+5
-        print*,"here1?"
         goto 100
       endif
 

@@ -22,7 +22,7 @@ Subgroup (0a)
     in Subgroup 0b.  Up to MXFF are allowed in 1 application,
     although this may be limited by your operating system.
     MXFF is set in PARAMS.SMG, which is compiled into SMERGE.EXE.
-    (NFF)          No Default         ! NFF = 5    !
+    (NFF)          No Default         ! NFF = 27   !
 
 Other Input and Output Files:
 -----------------------------
@@ -64,12 +64,8 @@ Subgroup (0b)
     appear in this control file), then no default elevation is available
     and station pressure remains missing.
 
-   ! SFCMET = ./Met/Surface/720379-63882-2024  !   ! IFSTN  = 720379 !   ! ASTZ   = UTC-0000 ! !END!
-   ! SFCMET = ./Met/Surface/720445-99999-2024  !   ! IFSTN  = 720445 !   ! ASTZ   = UTC-0000 ! !END!
-   ! SFCMET = ./Met/Surface/720446-99999-2024  !   ! IFSTN  = 720446 !   ! ASTZ   = UTC-0000 ! !END!
-   ! SFCMET = ./Met/Surface/720448-00144-2024  !   ! IFSTN  = 720448 !   ! ASTZ   = UTC-0000 ! !END!
-   ! SFCMET = ./Met/Surface/720451-99999-2024  !   ! IFSTN  = 720451 !   ! ASTZ   = UTC-0000 ! !END!
-   * SFCMET = ./Met/Surface/720903-00441-2024  *   * IFSTN  = 720903 *   * ASTZ   = UTC-0000 * *END*
+
+   __FILE LIST__
 
 -----------------------------------------------------------------------------
 INPUT GROUP: 1 -- Run control parameters
@@ -83,11 +79,11 @@ INPUT GROUP: 1 -- Run control parameters
                        Hour (IBHR) -- No default   ! IBHR  = 0    !
                     Second (IBSEC) -- No default   ! IBSEC = 0    !
 
-       Ending date:    Year (IEYR) -- No default   ! IEYR  = 2024!
-                      Month (IEMO) -- No default   ! IEMO  = 3   !
-                        Day (IEDY) -- No default   ! IEDY  = 23  !
-                       Hour (IEHR) -- No default   ! IEHR  = 0   !
-                    Second (IESEC) -- No default   ! IESEC = 0   !
+       Ending date:    Year (IEYR) -- No default   ! IEYR  = 2024 !
+                      Month (IEMO) -- No default   ! IEMO  = 3    !
+                        Day (IEDY) -- No default   ! IEDY  = 23   !
+                       Hour (IEHR) -- No default   ! IEHR  = 0    !
+                    Second (IESEC) -- No default   ! IESEC = 0    !
 
       UTC time zone (char*8)(ABTZ) -- No default   ! ABTZ  = UTC-0000  !
          PST = UTC-0800, MST = UTC-0700
