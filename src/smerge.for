@@ -2800,7 +2800,7 @@ C     DECODE CURRENT DATE
 C     WRITE SURFACE DATA TO OUTPUT FILE FOR THIS HOUR
 
          call wrs(io6,ioform,ntstn,iopack,iosurf,ibuf,jyr,jjul,jhr,
-     &            xws,xwd,ixceil,ixcc,xtempk,ixrh,xpres,ixpcode,
+     &            xws,xwd,ixceil,ixcc,xtempk,ixrh,xpres,ixpcode,xprate,
      &            ncbdf,lfprint)
 
 c --- Write precipitation rate data to PRECIP.DAT file
@@ -4198,7 +4198,8 @@ c
 
 c----------------------------------------------------------------------
       subroutine wrs(iolst,iforms,nssta,ispack,io,ibuf,iyr,ijul,ihr,
-     1          ws,wd,iceil,icc,tempk,irh,pres,ipcode,ncbdf,lfprint)
+     1          ws,wd,iceil,icc,tempk,irh,pres,ipcode,xprate,
+     1          ncbdf,lfprint)
 c----------------------------------------------------------------------
 c
 c --- SMERGE     Version: 5.7.0     Level: 041123              WRS
@@ -4255,14 +4256,13 @@ c --- WRS called by:  RDWRITS
 c --- WRS calls:      PACKS , SHIFTSEC
 c----------------------------------------------------------------------
 c
-      real ws(nssta),wd(nssta),tempk(nssta),pres(nssta)
+      real ws(nssta),wd(nssta),tempk(nssta),pres(nssta),xprate(nssta)
 c
       integer iceil(nssta),icc(nssta),irh(nssta),ipcode(nssta)
       integer ibuf(3,nssta)
       integer ncbdf(7)
 
       logical lfprint
-
 
 c --- Convert single hour-ending time to explicit beg/end times with seconds
 c --- for  output purposes only (041123)
@@ -4361,7 +4361,7 @@ c
 c
 c ---       write unpacked data
             write(io)ibdathrn,ibsecn,iedathrn,iesecn,
-     :               ws,wd,iceil,icc,tempk,irh,pres,ipcode
+     :               ws,wd,iceil,icc,tempk,irh,pres,ipcode,xprate
          else
 c
 c ---       pack and write data
@@ -4379,9 +4379,9 @@ c ---    Explicit beginning/ending times with seconds
          write(io,10)ibyrn,ibjuln,ibhrn,ibsecn,ieyrn,iejuln,iehrn,iesecn
 10       format(2(3i4,i5,3x))
          write(io,20) (ws(n),wd(n),iceil(n),icc(n),tempk(n),irh(n),
-     1                 pres(n),ipcode(n),n=1,nssta)
+     1                 pres(n),ipcode(n),xprate(n),n=1,nssta)
  20      format(1x,f8.3,1x,f8.3,1x,i4,1x,i4,1x,f8.3,1x,i4,1x,
-     &          f8.3,1x,i4)
+     &          f8.3,1x,i4,1x,f8.3)
 c 20      format((2f12.6,2i5,f12.6,i5,f12.6,i5))
 c-emi **** End of EMI Modification ****
       else

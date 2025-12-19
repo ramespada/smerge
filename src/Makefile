@@ -3,7 +3,7 @@
 FC   = gfortran
 LIBS = 
 INC  = 
-FFLAGS = -O2 -ffree-line-length-none -Wunused -fallow-argument-mismatch -std=legacy -mtune=native -fbacktrace -fcheck=bounds #-x f95-cpp-input -DWGET #-g
+FFLAGS = -O0 -ffree-line-length-none -Wunused -fallow-argument-mismatch -std=legacy -mtune=native -fbacktrace -fcheck=bounds #-x f95-cpp-input -DWGET #-g
 OBJS = smerge.o   #calutils.o
 EXE  = SMERGE.EXE
 
