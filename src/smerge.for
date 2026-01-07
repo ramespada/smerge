@@ -3572,7 +3572,7 @@ c --- Local Variables
       character*80 comment1
 
 c --- Configure output variables
-      data dataset/'SURF.DAT'/, dataver/'2.1'/
+      data dataset/'SURF.DAT'/, dataver/'2.2'/
       data datamod/'Hour Start and End Times with Seconds'/
       data ncomment/1/
       data comment1/'Produced by SMERGE Version: '/
